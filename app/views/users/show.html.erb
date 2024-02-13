@@ -10,3 +10,23 @@
       <% end %>
   </ul>
 </div>
+
+<div>
+  <h2>Attended Events</h2>
+  <% @user.attended_events.each do |attended_event| %>
+    <% if attended_event.date > Time.now %>
+      <h4>Future Events:</h4>
+      <ul>
+        <li><%= link_to  attended_event.title, event_path(attended_event) %></li>
+        <p><%= attended_event.location %></li>
+      </ul>
+
+    <% else %>
+      <h4>Past Events:</h4>
+     <ul>
+        <li><%= link_to  attended_event.title, event_path(attended_event) %></li>
+        <p><%= attended_event.location %></li>
+     </ul>
+   <% end %>
+ <% end %>
+    
