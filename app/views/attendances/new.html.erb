@@ -1,0 +1,6 @@
+<h1>Attend Event!</h1>
+
+<%= form_with model: @attendance do |f| %>
+  <%= f.hidden_field :event_id, value: params[:event_id] %>
+  <%= f.submit "Confirm Attend" %>
+<% end %>
