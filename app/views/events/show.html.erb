@@ -7,8 +7,19 @@
   <h4><%= @event.date %></h4>
 </div>
 
-<% if user_signed_in? && @event.creator == current_user %>
-  <%= link_to "Edit", "#" %> | <%= link_to "Delete", "#" %>
-<% else %>
+<% if user_signed_in? %>
+  <div>
+    <h3>People Attending: <%= @event.attendees.count %> and counting...</h3>
+    <ul>
+      <% @event.attendees.each do |attendee| %>
+        <li><%= attendee.username %></li>
+      <% end %>
+    </ul>
+  </div>
+    
+  <% if @event.creator == current_user %>
+    <%= link_to "Edit", "#" %> | <%= link_to "Delete", "#" %>
+  <% end %>
+
   <h2><%= link_to "Attend Event", new_attendance_path(event_id: @event), method: :post %></h2>
 <% end %>
