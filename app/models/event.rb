@@ -3,4 +3,13 @@ class Event < ApplicationRecord
 
   has_many :attendances
   has_many :attendees, through: :attendances,  source: :user
+
+  
+  scope :past, -> { where('date < ?', Time.now) }
+  scope :incoming,-> { where('date > ?', Time.now) }
+
+  def formatted_date
+    date.strftime("%B %d, %Y %I:%M %p")
+  end
+
 end

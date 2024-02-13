@@ -1,12 +1,23 @@
 <h1>Events In Town!</h1>
-<p>Checkout available events near you.</p>
+<p>Check out available events near you.</p>
 
 <div>
+  <h3>Past Events:</h3>
   <ul>
-    <% @events.each do |event| %>
-      <li><%= link_to event.title, event_path(event) %></li>
-      <p>Location: <%= event.location %></p>
-      <p>Date: <%= event.date %></p>
+    <% Event.past.each do |past_event| %>
+      <li><%= link_to past_event.title, event_path(past_event) %></li>
+      <p>Location: <%= past_event.location %></p>
+      <p>Date: <%= past_event.formatted_date %></p>
+    <% end %>
+    </ul>
+</div>
+<div>
+  <h3>Incoming Events:</h3>
+    <ul>
+    <% Event.incoming.each do |incoming_event| %>
+      <li><%= link_to incoming_event.title, event_path(incoming_event) %></li>
+      <p>Location: <%= incoming_event.location %></p>
+      <p>Date: <%= incoming_event.formatted_date %></p>
     <% end %>
   </ul>
 </div>
