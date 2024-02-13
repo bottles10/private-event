@@ -1,3 +1,13 @@
 <h1>Events In Town!</h1>
 <p>Checkout available events near you.</p>
 
+<div>
+  <ul>
+    <% @events.each do |event| %>
+      <li><%= link_to event.title, event_path(event) %></li>
+      <p>Location: <%= event.location %></p>
+      <p>Date: <%= event.date %></p>
+    <% end %>
+  </ul>
+</div>
+
