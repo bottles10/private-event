@@ -18,8 +18,12 @@
   </div>
     
   <% if @event.creator == current_user %>
-    <%= link_to "Edit", "#" %> | <%= link_to "Delete", "#" %>
+    <%= link_to "Edit", edit_event_path(@event) %> | <%= link_to "Deestroy this event", @event, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
   <% end %>
 
   <h2><%= link_to "Attend Event", new_attendance_path(event_id: @event), method: :post %></h2>
 <% end %>
+
+<div>
+<%= link_to "Back to events", events_path %>
+</div>

@@ -5,7 +5,7 @@
 <div>
   <ul>
     <% @user.events.each do |event| %>
-      <li><%= event.title %>
+      <li><%= link_to event.title, event_path(event) %>
       <p><%= event.location %></p>
       <% end %>
   </ul>
@@ -29,4 +29,7 @@
      </ul>
    <% end %>
  <% end %>
+ <div>
+    <%= link_to "Back to events", events_path %>
+ </div>
     
