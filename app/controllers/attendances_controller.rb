@@ -15,6 +15,14 @@ class AttendancesController < ApplicationController
     end
   end
 
+  def destroy
+    @attendance = current_user.attendances.find(params[:id])
+
+    @attendance.destroy!
+
+      
+  end
+
   private
     def attendance_params
       params.require(:attendance).permit(:event_id)

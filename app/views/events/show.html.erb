@@ -17,12 +17,19 @@
     </ul>
   </div>
     
-  <% if @event.creator == current_user %>
-    <%= link_to "Edit", edit_event_path(@event) %> | <%= link_to "Deestroy this event", @event, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <% attendance = current_user.attendances.find_by(event_id: @event.id) %>
+    <% if attendance %>
+      <h2><%= link_to "Unattend event", attendance_path(attendance), data: { turbo_method: :delete, turbo_confirm: "Are you sure, you don't want to attend this Event?" } %></h2>
+    <% else %>  
+      <h2><%= link_to "Attend Event", new_attendance_path(event_id: @event) %></h2>
   <% end %>
 
-  <h2><%= link_to "Attend Event", new_attendance_path(event_id: @event), method: :post %></h2>
-<% end %>
+    <% if @event.creator == current_user %>
+      <%= link_to "Edit", edit_event_path(@event) %> | <%= link_to "Destroy this event", @event, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+    <% end %>
+ 
+  <% end %>
+ 
 
 <div>
 <%= link_to "Back to events", events_path %>
