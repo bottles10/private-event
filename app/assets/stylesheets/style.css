@@ -14,3 +14,11 @@
 nav a {
 	margin-right: 1rem;
 }
+
+/* error explanation */
+#error_explanation {
+	color: red;
+}
+#error_explanation ul {
+    border: 1px solid red;
+}

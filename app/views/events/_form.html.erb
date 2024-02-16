@@ -1,16 +1,14 @@
 <%= form_with model: @event do |f| %>
     <% if @event.errors.any? %>
-    <div style= "color: red;">
-      <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this form from being saved!.</h2>
-      
-      <div style="border: 2px solid red; padding: 5px;">
-      <ul>
-        <% @event.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this form from being saved!.</h2>
+        
+        <ul>
+          <% @event.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
       </div>
-    </div>
     <% end %>
 
 
