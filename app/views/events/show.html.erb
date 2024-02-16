@@ -30,7 +30,9 @@
  
   <% end %>
  
-
+  <% unless user_signed_in? %>
+    <h2><%= link_to "Attend Event", new_attendance_path(event_id: @event) %></h2>
+  <% end %>
 <div>
 <%= link_to "Back to events", events_path %>
 </div>
