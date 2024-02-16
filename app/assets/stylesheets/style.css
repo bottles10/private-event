@@ -1,0 +1,16 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	margin-left: 1rem;
+}
+.logo a {
+	text-decoration: none;
+}
+
+nav a {
+	margin-right: 1rem;
+}
