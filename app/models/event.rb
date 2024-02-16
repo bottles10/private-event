@@ -4,9 +4,12 @@ class Event < ApplicationRecord
   has_many :attendances
   has_many :attendees, through: :attendances,  source: :user
 
-  
-  scope :past, -> { where('date < ?', Time.now) }
-  scope :incoming,-> { where('date > ?', Time.now) }
+  validates :title, presence: true, length: { minimum: 2 }
+  validates :location, presence: true, length: { minimum: 2 }
+  validates :description, presence: true, length: { minimum: 10 } 
+  validates :date, presence: true
+  scope :past, -> { where(date: ..(Time.now)) }
+  scope :incoming,-> { where(date: ..(Time.now)) }
 
   def formatted_date
     date.strftime("%B %d, %Y %I:%M %p")
