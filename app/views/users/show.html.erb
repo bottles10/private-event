@@ -1,35 +1,42 @@
-<h1>Welcome! <%= current_user.username %></h1>
-
-<h2>Events Created by You</h2>
+<h1>Welcome <%= current_user.username.capitalize %>!</h1>
 
 <div>
-  <ul>
-    <% @user.events.each do |event| %>
-      <li><%= link_to event.title, event_path(event) %>
-      <p><%= event.location %></p>
+  <% if @user.events.empty? && @user.attended_events.empty? %>
+    <h2>Please create an event or Join one!</h2>
+  <% else %>
+    <h2>Events Created by You</h2>
+
+    <div>
+      <ul>
+        <% @user.events.each do |event| %>
+          <li><%= link_to event.title, event_path(event) %>
+          <p><%= event.location %></p>
+          <% end %>
+      </ul>
+    </div>
+
+    <div>
+      <h2>Attended Events</h2>
+      <% @user.attended_events.each do |attended_event| %>
+        <% if attended_event.date > Time.now %>
+          <h4>Future Events:</h4>
+          <ul>
+            <li><%= link_to  attended_event.title, event_path(attended_event) %></li>
+            <p><%= attended_event.location %></li>
+          </ul>
+
+        <% else %>
+          <h4>Past Events:</h4>
+        <ul>
+            <li><%= link_to  attended_event.title, event_path(attended_event) %></li>
+            <p><%= attended_event.location %></li>
+        </ul>
       <% end %>
-  </ul>
+    <% end %>
+    <div>
+        <%= link_to "Back to events", events_path %>
+    </div>
+  <% end %>
+    
 </div>
 
-<div>
-  <h2>Attended Events</h2>
-  <% @user.attended_events.each do |attended_event| %>
-    <% if attended_event.date > Time.now %>
-      <h4>Future Events:</h4>
-      <ul>
-        <li><%= link_to  attended_event.title, event_path(attended_event) %></li>
-        <p><%= attended_event.location %></li>
-      </ul>
-
-    <% else %>
-      <h4>Past Events:</h4>
-     <ul>
-        <li><%= link_to  attended_event.title, event_path(attended_event) %></li>
-        <p><%= attended_event.location %></li>
-     </ul>
-   <% end %>
- <% end %>
- <div>
-    <%= link_to "Back to events", events_path %>
- </div>
-    
